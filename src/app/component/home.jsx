@@ -9,10 +9,10 @@ export default function Home() {
   const [lastClickTime, setLastClickTime] = useState(Date.now());
   const [imageSrc, setImageSrc] = useState('/picture/pop.png');
   
-  const activeAudioRef = useRef(null); // Reference for the currently playing audio
+  const activeAudioRef = useRef(null);
 
   const sounds = ["/sound/pop.ogg"];
-  const specialSound = "/sound/แดน.mp3"; // เสียงพิเศษเมื่อหลอด 100%
+  const specialSound = "/sound/แดน.mp3";
 
   const playSound = (src) => {
     if (isUserInteracted) {
@@ -52,15 +52,15 @@ export default function Home() {
 
     if (speedMeter >= 100) {
       setImageSrc('/picture/pup3.png');
-      playSpecialSound(); // เล่นเสียงแดน.mp3 เมื่อหลอดเต็ม
+      playSpecialSound(); // เล่นเสียงเมื่อหลอดเต็ม
     } else if (speedMeter >= 50) {
       setImageSrc('/picture/pup2.png');
-      stopSpecialSound(); // หยุดเสียงพิเศษถ้าหลอดลดลงต่ำกว่า 100%
+      stopSpecialSound(); // หยุดเสียงถ้าหลอดลดลงต่ำกว่า 100%
     } else {
       setImageSrc('/picture/pup.png');
       playSound(sounds[audioIndex]);
       setAudioIndex((prevIndex) => (prevIndex + 1) % sounds.length);
-      stopSpecialSound(); // หยุดเสียงพิเศษถ้าหลอดลดลงต่ำกว่า 100%
+      stopSpecialSound(); // หยุดเสียงถ้าหลอดลดลงต่ำกว่า 100%
     }
 
     const newScore = score + 1;
@@ -104,7 +104,7 @@ export default function Home() {
         setSpeedMeter((prev) => {
           const newSpeedMeter = Math.max(prev - 10, 0);
           if (newSpeedMeter < 80) {
-            stopSpecialSound(); // หยุดเสียงพิเศษเมื่อหลอดต่ำกว่า 100%
+            stopSpecialSound(); // หยุดเสียงเมื่อหลอดต่ำกว่า 100%
           }
           return newSpeedMeter;
         });
@@ -123,8 +123,8 @@ export default function Home() {
           alt="Special GIF"
           className="absolute top-0 left-0 w-full h-full object-cover"
           style={{
-            opacity: 0.2, // ปรับความโปร่งใสของ GIF
-            pointerEvents: 'none', // ป้องกันไม่ให้ GIF ขัดขวางการโต้ตอบ
+            opacity: 0.2,
+            pointerEvents: 'none',
           }}
         />
       )}
@@ -133,29 +133,29 @@ export default function Home() {
       <div
         className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-pink-100 via-white to-pink-100 ..."
         style={{
-          zIndex: -2, // พื้นหลังอยู่ด้านล่างสุด
+          zIndex: -2,
         }}
       />
 
       <div
         className={`absolute top-20 bg-gray-50 ${speedMeter === 80 ? 'animate-shake' : ''}`} // เพิ่ม animation เมื่อ speedMeter ถึง 100%
         style={{
-          left: '10px', // ระยะห่างจากขอบซ้าย
-          width: '6px', // ความกว้างของหลอด
-          height: '500px', // ความยาวของหลอด
+          left: '10px',
+          width: '6px',
+          height: '500px',
           borderRadius: '4px',
           overflow: 'hidden',
-          position: 'absolute', // ใช้ absolute positioning
-          zIndex: 0, // ให้หลอดอยู่ด้านหน้าของ GIF แต่หลังเนื้อหา
+          position: 'absolute',
+          zIndex: 0,
         }}
       >
         <div
             className="bg-gradient-to-t from-yellow-400 via-orange-500 to-red-500 transition-all duration-200 ease-linear"
             style={{
-            height: `${speedMeter}%`, // ความสูงของหลอดขึ้นอยู่กับค่าของ speedMeter
-            width: '100%', // ความกว้างเต็มของ container
+            height: `${speedMeter}%`, // ความสูงของหลอด
+            width: '100%',
             position: 'absolute',
-            bottom: 0, // ให้หลอดเริ่มวัดจากด้านล่าง
+            bottom: 0,
             }}
         />
 
@@ -181,3 +181,5 @@ export default function Home() {
     </div>
   );
 }
+message.txt
+7 KB
